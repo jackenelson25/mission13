@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import data from './MovieData.json';
-
-const mds = data.MovieData;
+import { useEffect, useState } from 'react';
+import { Movie } from './types/movie';
 
 function MovieList() {
-  const [ListOMovies, SetListOMovies] = useState(mds);
+  const [ListOMovies, SetListOMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const rsp = await fetch('https://localhost:4000/movie');
+      const temp = await rsp.json();
+      SetListOMovies(temp);
+    };
+    fetchMovies();
+  }, []);
 
   return (
     <>
@@ -17,23 +24,25 @@ function MovieList() {
         <table className="table">
           <thead>
             <tr>
+              <th>Category</th>
               <th>Title</th>
               <th>Year</th>
               <th>Director</th>
-              <th>Rating</th>
-              <th>Category</th>
               <th>Edited</th>
+              <th>Lent To</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>
             {ListOMovies.map((m) => (
-              <tr>
-                <td>{m.Title}</td>
-                <td>{m.Year}</td>
-                <td>{m.Director}</td>
-                <td>{m.Rating}</td>
-                <td>{m.Category}</td>
-                <td>{m.Edited}</td>
+              <tr key={m.movieId}>
+                <td>{m.category}</td>
+                <td>{m.title}</td>
+                <td>{m.year}</td>
+                <td>{m.director}</td>
+                <td>{m.edited}</td>
+                <td>{m.lentTo}</td>
+                <td>{m.notes}</td>
               </tr>
             ))}
           </tbody>

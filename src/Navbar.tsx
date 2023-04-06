@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import './App.css';
+// import './App.css';
 
 function Navbar() {
   return (
@@ -28,15 +28,3 @@ function Navbar() {
 }
 
 export default Navbar;
-{
-  /* <div class="bg-dark text-white p-2">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col navbar-brand">Jack's Bookstore</div>
-                    <div class="col-4 text-right">
-                        <vc:cart-summary />
-                    </div>
-                </div>
-            </div>
-        </div> */
-}
